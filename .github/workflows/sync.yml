@@ -1,11 +1,10 @@
 name: Sync Fork from Upstream
 
 on:
-  # 每日 08:00 (Asia/Taipei, 等同 UTC 00:00) 定時執行
+  # 每小時 00 分執行一次（UTC）；臺灣時間等於每小時的 08 分
   schedule:
     - cron: '0 * * * *'
-  # GitHub 介面可手動觸發
-  workflow_dispatch: # on button click
+  workflow_dispatch:
 
 jobs:
   sync-fork:
@@ -15,8 +14,6 @@ jobs:
       - name: Sync Fork with Upstream
         uses: AbdulmelikKalkan/sync-fork-upstream@v1.3
         env:
-          # 在 repo → Settings → Secrets and variables → Actions
-          # 新增 ACCESS_TOKEN，值為你的 PAT
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         with:
           owner: Frank-Tsai-Tech
