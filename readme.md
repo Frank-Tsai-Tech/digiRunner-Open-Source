@@ -1,6 +1,6 @@
 [![][tpi-logo]][tpi-url]
 # digiRunner: Mission-Critical API Gateway & Management for Microservices
-[TPI.dev](https://tpi.dev) | [Documentation](https://docs.tpi.dev/) | [Blog](https://tpi.dev/blog)
+[TPI.dev](https://tpi.dev) | [Documentation](https://docs.tpi.dev/) | [Blog](https://tpi.dev/blog) | [Community](https://github.com/TPIsoftwareOSPO/digiRunner-Open-Source/discussions)
 ## Table of contents
 - [Overview](#overview)
 - [Quick Start](#quick-start)
@@ -105,6 +105,8 @@ docker run -it -d -p 31080:18080 tpisoftwareopensource/digirunner-open-source
 
 #### Option 2: Docker-Compose
 
+> Based on the content of [deploys/docker-compose/docker-compose.yml](deploys/docker-compose/docker-compose.yml)
+
 ```yml
 name: digirunner-open-source
 services:
@@ -121,19 +123,14 @@ services:
 
 #### Option 3: Kubernetes
 
+> Based on the content of [deploys/kubernetes/digirunner-open-source.yml](deploys/kubernetes/digirunner-open-source.yml)
+
+
 ```yml
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: digirunner-open-source-ns
-
----
-
 apiVersion: v1
 kind: Service
 metadata:
   name: digirunner-open-source-svc
-  namespace: digirunner-open-source-ns
 spec:
   ports:
     - name: tcp
@@ -154,7 +151,6 @@ metadata:
   labels:
     app: digirunner
   name: digirunner-open-source-deploy
-  namespace: digirunner-open-source-ns
 spec:
   replicas: 1
   selector:
@@ -182,6 +178,14 @@ spec:
 
 - save above configuration to `digirunner-open-source.yml`
 - run `kubectl apply -f digirunner-open-source.yml`
+
+#### Option 4: Helm
+
+Contributions:
+
+- **[how-to-package-digirunner-using-helm](https://github.com/vulcanshen-tpi/how-to-package-digirunner-using-helm)**
+  - Step-by-step guide on how to package the digirunner open source project using Helm.
+  - Quickly install the example
 
 #### Connect to service
 
