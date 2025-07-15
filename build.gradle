@@ -79,12 +79,12 @@ subprojects {
 		}
 		
 		// Correct the above exclusions, group:'org.springframework', module:'spring-context'
-		implementation 'org.springframework:spring-context:6.2.7'
+		implementation 'org.springframework:spring-context:6.2.8'
 		// Correct the above exclusions, group:'org.springframework', module:'spring-web'
 		implementation 'org.springframework:spring-web:6.2.8'
 		
 		// 修正上方排除的 org.apache.tomcat.embed:tomcat-embed-core
-		implementation 'org.apache.tomcat.embed:tomcat-embed-core:11.0.8'
+		implementation 'org.apache.tomcat.embed:tomcat-embed-core:11.0.9'
 		// 修正上方排除的 ch.qos.logback:logback-classic
 		implementation 'ch.qos.logback:logback-classic:1.5.13'
 		// 修正上方排除的 ch.qos.logback:logback-core
@@ -204,7 +204,7 @@ project(':dgrv4_Gateway_serv'){
 		}
 		
 		// Correct the above exclusions, group:'org.springframework', module:'spring-context'
-		implementation 'org.springframework:spring-context:6.2.7'
+		implementation 'org.springframework:spring-context:6.2.8'
 		// Correct the above exclusions, group:'org.springframework', module:'spring-web'
 		implementation 'org.springframework:spring-web:6.2.8'
 		
@@ -227,7 +227,7 @@ project(':dgrv4_Gateway_serv'){
 		})
 		
 		// 修正上方排除的
-		compileOnly 'com.google.protobuf:protobuf-java:3.25.5'
+		compileOnly 'com.google.protobuf:protobuf-java:4.31.1'
 		
 		implementation ('org.owasp.esapi:esapi:2.6.0.0'){
 			exclude group:'commons-beanutils', module:'commons-beanutils'
@@ -249,7 +249,7 @@ project(':dgrv4_Gateway_serv'){
 		implementation 'org.yaml:snakeyaml:2.2'
 		
 		// Correct the above exclusions, group:'com.google.protobuf', module:'protobuf-java'
-		implementation 'com.google.protobuf:protobuf-java:3.25.5'
+		implementation 'com.google.protobuf:protobuf-java:4.31.1'
 
 		// 添加對 Netty 的非遮蔽(non-shaded)依賴，以便 TLS 相關功能
 		implementation 'io.grpc:grpc-netty:1.61.0'
