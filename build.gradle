@@ -179,14 +179,20 @@ project(':dgrv4_Gateway_serv'){
 
 		// for tsmpdpaa
 		implementation 'com.sun.mail:javax.mail:1.6.2'
-		implementation 'org.springdoc:springdoc-openapi-ui:1.6.14'
+       	implementation ('org.springdoc:springdoc-openapi-ui:1.6.14'){
+			exclude group: 'org.apache.commons', module: 'commons-lang3'
+		}
 		implementation 'org.yaml:snakeyaml:2.2'
 
 		implementation ('org.apache.poi:poi-ooxml:5.4.0'){
+			exclude group: 'org.apache.commons', module: 'commons-lang3'
 			// 'Avoid CVE-2024-26308'
 			// exclude group: 'org.apache.commons', module: 'commons-compress'
 		}
 		// implementation 'org.apache.commons:commons-compress:1.27.0'
+		
+		// Correct the above exclusions, group: 'org.apache.commons', module: 'commons-lang3'
+		implementation 'org.apache.commons:commons-lang3:3.18.0'
 
 		// Kryo Serialization
 		implementation 'com.esotericsoftware:kryo:5.4.0'
@@ -225,17 +231,25 @@ project(':dgrv4_Gateway_serv'){
 		
 		implementation ('org.owasp.esapi:esapi:2.6.0.0'){
 			exclude group:'commons-beanutils', module:'commons-beanutils'
+			exclude group:'commons-fileupload', module:'commons-fileupload'
 		}
 		
-		// 修正上方排除的 commons-beanutils:commons-beanutils
-		implementation 'commons-beanutils:commons-beanutils:1.11.0'
+		// Correct the above exclusions, group:'commons-beanutils', module:'commons-beanutils'
+		implementation 'commons-beanutils:commons-beanutils:1.11.0'		
+		// Correct the above exclusions, group:'commons-fileupload', module:'commons-fileupload'
+		implementation 'commons-fileupload:commons-fileupload:1.6.0'
 		
 		// gRPC Proxy
 		implementation 'net.devh:grpc-server-spring-boot-starter:2.15.0.RELEASE'
 		implementation 'io.grpc:grpc-netty-shaded:1.61.0'
-		implementation 'io.grpc:grpc-protobuf:1.61.0'
+		implementation ('io.grpc:grpc-protobuf:1.61.0'){
+			exclude group:'com.google.protobuf', module:'protobuf-java'
+		}
 		implementation 'io.grpc:grpc-stub:1.61.0'
 		implementation 'org.yaml:snakeyaml:2.2'
+		
+		// Correct the above exclusions, group:'com.google.protobuf', module:'protobuf-java'
+		implementation 'com.google.protobuf:protobuf-java:3.25.5'
 
 		// 添加對 Netty 的非遮蔽(non-shaded)依賴，以便 TLS 相關功能
 		implementation 'io.grpc:grpc-netty:1.61.0'
@@ -333,7 +347,7 @@ project(':dgrv4_Entity_lib'){
 	// 引用其它 project
 	dependencies{
 		implementation project(':dgrv4_Common_lib')
-		compileOnly 'org.apache.commons:commons-lang3:3.12.0'
+		compileOnly 'org.apache.commons:commons-lang3:3.18.0'
 		
 		// Kryo Serialization
 		compileOnly 'com.esotericsoftware:kryo:5.4.0'
